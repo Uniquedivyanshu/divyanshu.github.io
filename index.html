@@ -2,14 +2,274 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divyanshu Singh | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background-color: #0f172a; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #06b6d4; }
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #06b6d4; /* Neon Cyan */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 30px; }
+
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--accent-color); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 8%;
+        }
+
+        .hero h3 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 600px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* Global Sections */
+        section { padding: 100px 8% 80px; }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span { color: var(--accent-color); }
+
+        /* Grid Layout for Skills & Projects */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 15px;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.15);
+        }
+
+        .card i {
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .card h3 { margin-bottom: 12px; font-size: 1.4rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Contact Links */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 35px;
+        }
+
+        .social-icon {
+            font-size: 2.2rem;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Portfolio</h1>
-    <p>I am a B.Tech CSE student. Building my future here!</p>
+
+    <nav>
+        <div class="logo">DS<span>.</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h3>Hi there, I am</h3>
+        <h1>Divyanshu Singh</h1>
+        <p>An aspiring Software Engineer & Digital Content Creator. Currently in my 1st year of B.Tech Computer Science and Engineering, building systematic logic and creative online solutions.</p>
+        <a href="#contact" class="btn">Connect With Me</a>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <div class="grid-container">
+            <div class="card">
+                <i class="fa-solid fa-code"></i>
+                <h3>Core Programming</h3>
+                <p>Developing structural logic and algorithmic thinking using core computer science languages.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>Web Development</h3>
+                <p>Crafting modern, highly responsive, and interactive frontend interfaces from scratch.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>AI & Automation</h3>
+                <p>Leveraging cutting-edge generative AI models and automation tools for maximum creative productivity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Featured <span>Work</span></h2>
+        <div class="grid-container">
+            <div class="card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Digital Brand Architecture</h3>
+                <p>Designed and managed multiple content channels, engineering systemic visual assets and growth strategies.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-file-invoice"></i>
+                <h3>Technical Curation</h3>
+                <p>Authored research-driven articles analyzing AI's impact on placement ecosystems for college media projects.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-terminal"></i>
+                <h3>Next-Gen Systems</h3>
+                <p>This slot is engineered for the upcoming premium web applications and upcoming hackathon project builds.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In <span>Touch</span></h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Let's build something great together. Connect with me on social platforms.</p>
+        <div class="contact-links">
+            <a href="https://linkedin.com" class="social-icon" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com" class="social-icon" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram.com" class="social-icon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Divyanshu Singh. All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>
