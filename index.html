@@ -8,192 +8,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #06b6d4; /* Neon Cyan */
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+        /* Existing root and global styles remain the same... */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+/* Naya Hero Section Style (Main Change) */
+.hero {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split in half */
+    align-items: center;
+    padding: 0 8%;
+    margin-top: 80px; /* Offset for nav */
+}
 
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
+.hero h3 {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
 
-        .logo span { color: var(--accent-color); }
+.hero h1 {
+    font-size: 3.8rem;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
+.hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
 
-        nav ul li { margin-left: 30px; }
+/* Right-side large photo style */
+.hero-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        nav ul li a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+.hero-photo img {
+    width: 350px; /* Adjusted size */
+    height: 350px;
+    border-radius: 50%;
+    border: 5px solid rgba(6, 182, 212, 0.2);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+    object-fit: cover;
+}
 
-        nav ul li a:hover { color: var(--accent-color); }
+/* Mobiles par automatically single column ho jayega */
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 150px;
+        height: auto;
+    }
+    .hero h1 { font-size: 2.8rem; }
+    .hero-photo img { width: 250px; height: 250px; margin-top: 40px;}
+}
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 8%;
-        }
-
-        .hero h3 {
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            max-width: 600px;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s ease-in-out;
-        }
-
-        .btn:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        /* Global Sections */
-        section { padding: 100px 8% 80px; }
-
-        .section-title {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title span { color: var(--accent-color); }
-
-        /* Grid Layout for Skills & Projects */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 15px;
-            transition: 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.15);
-        }
-
-        .card i {
-            font-size: 2.8rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        .card h3 { margin-bottom: 12px; font-size: 1.4rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        /* Contact Links */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            margin-top: 35px;
-        }
-
-        .social-icon {
-            font-size: 2.2rem;
-            color: var(--text-muted);
-            transition: 0.3s;
-        }
-
-        .social-icon:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 50px;
-        }
-
-        @media (max-width: 768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 2.8rem; }
-        }
     </style>
 </head>
 <body>
@@ -210,14 +101,19 @@
 
     <section id="home" class="hero">
        
-        <img src="https://i.ibb.co/8Dq2tN6g/IMG-20260530-WA0003.jpg" alt="Divyanshu" style="width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent-color); margin-bottom: 20px; object-fit: cover;">
-        
+        <div class="hero-content">
         <h3>Hi there, I am</h3>
         <h1>Divyanshu Singh</h1>
         <p>An aspiring Software Engineer & Digital Content Creator. Currently in my 2nd year of B.Tech Computer Science and Engineering, building systematic logic and creative online solutions.</p>
         <a href="#contact" class="btn">Connect With Me</a>
-    </section>
+    </div>
 
+    <div class="hero-photo">
+        <img src="https://i.ibb.co/8Dq2tN6g/IMG-20260530-WA0003.jpg" alt="Divyanshu">
+    </div>
+
+</section>
+    
     <section id="skills">
         <h2 class="section-title">My <span>Skills</span></h2>
         <div class="grid-container">
