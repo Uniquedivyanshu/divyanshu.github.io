@@ -310,6 +310,31 @@
             .hero h1 { font-size: 2.8rem; }
             .hero-photo img { width: 260px; height: 260px; margin-top: 30px; }
         }
+
+        /* Mobile Responsive Navigation */
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 5%;
+        flex-direction: column; /* Logo aur Menu ko upar-niche set karne ke liye */
+        gap: 10px;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap; /* Agar jagah kam ho toh menu items niche line me aa jayein */
+        justify-content: center;
+        gap: 15px;
+        background: rgba(15, 23, 42, 0.9); /* Dark background phone menu ke liye */
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(6, 182, 212, 0.2);
+    }
+
+    nav ul li a {
+        font-size: 0.9rem; /* Phone par text thoda chota */
+    }
+}
+
     </style>
 </head>
 <body>
