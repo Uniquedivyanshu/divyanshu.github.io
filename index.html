@@ -311,20 +311,95 @@
             .hero-photo img { width: 260px; height: 260px; margin-top: 30px; }
         }
 
+
+        /* Sidebar Menu for Mobile Phones */
+@media (max-width: 768px) {
+    nav {
+        position: fixed; /* Isse navbar upar jam jayega, scroll karne pe gayab nahi hoga */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: #0f172a;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* BTech aur Name ke upar thoda space dene ke liye kyunki navbar top par fixed hai */
+    body {
+        padding-top: 80px;
+    }
+
+    /* 3-line button ka design phone ke liye */
+    .menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: #06b6d4; /* Light blue/cyan color */
+        font-size: 1.6rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    /* Menu links ko ek side box (sidebar) banana */
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Shuruat me screen se bahar chhupa rahega */
+        width: 250px;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: 0.4s ease;
+        border-left: 1px solid rgba(6, 182, 212, 0.2);
+    }
+
+    /* Jab button click hoga, tab ye class active hogi aur menu andar slide karega */
+    nav ul.active {
+        right: 0; 
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
+    }
+}
+
+/* PC/Laptop par 3-line button ko chhupane ke liye */
+@media (min-width: 769px) {
+    .menu-btn {
+        display: none;
+    }
+}
+
+
+
+
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">DS<span>.</span></div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#resume">Resume</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="logo">DS<span>.</span></div>
+    
+    <button class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
     <section id="home" class="hero">
         
@@ -450,6 +525,34 @@
     <footer>
         <p>&copy; 2026 Divyanshu Singh. All Rights Reserved.</p>
     </footer>
+
+
+
+    <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    // Jab 3 lines par click ho toh menu slide karke andar aaye
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Agar menu khula hai toh icon ko 'X' (close) bana do, warna wapas 3 lines
+        const icon = menuBtn.querySelector('i');
+        if(navLinks.classList.contains('active')) {
+            icon.className = 'fa-solid fa-xmark';
+        } else {
+            icon.className = 'fa-solid fa-bars';
+        }
+    });
+
+    // Jab koi menu ke kisi option (jaise Resume) par click kare, toh menu apne aap band ho jaye
+    document.querySelectorAll('#navLinks a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+        });
+    });
+</script>
 
 </body>
 </html>
